@@ -11,7 +11,7 @@ let contacts = [];
  */
 
 function addContact(event) {
-  event.preventDefault(); //prevent form from autosubmitting
+  event.preventDefault(); //prevents refreshing of screen
   let form = event.target;
 
   let contact = {
@@ -41,7 +41,9 @@ function saveContacts() {
  * the contacts array to the retrieved array
  */
 function loadContacts() {
-  let storedContacts = JSON.parse(window.localStorage.getItem("contacts"));
+  let storedContacts = JSON.parse(
+    window.localStorage.getItem("contacts")
+  ); /** why does this string have quotations" I don't see this as a named ID in the HTML. I only see it as a named class **/
   if (storedContacts) {
     contacts = storedContacts;
   }
@@ -61,8 +63,9 @@ function drawContacts() {
     contactsTemplate += `
 
     <div class="contact-card mt-1 mb-1  ${
-      contact.emergencyContact ? "Emergency Contact" : "."
-    }"> 
+      contact.emergencyContact ? "emergency-contact" : ""
+    }
+    "> 
  
     <h3 class="mt-1 mb-1">${contact.name}</h3>
     <div class="d-flex space-between">
